@@ -1,8 +1,11 @@
 package com.ana.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -25,4 +28,8 @@ public class User {
 
     @Column(name = "role", nullable = false)
     private String role; // e.g., "admin", "customer"
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference // Prevents infinite recursion when serializing the Order entity
+    private List<Order> orders = new ArrayList<>();
 }
