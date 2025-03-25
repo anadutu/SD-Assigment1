@@ -1,6 +1,6 @@
-package com.andrei.demo.repository;
+package com.ana.demo.repository;
 
-import com.andrei.demo.model.Person;
+import com.ana.demo.model.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

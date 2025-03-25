@@ -1,8 +1,8 @@
-package com.andrei.demo.controller;
+package com.ana.demo.controller;
 
-import com.andrei.demo.model.PersonCreateDTO;
-import com.andrei.demo.service.PersonService;
-import com.andrei.demo.model.Person;
+import com.ana.demo.model.PersonCreateDTO;
+import com.ana.demo.service.PersonService;
+import com.ana.demo.model.Person;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;

@@ -1,8 +1,8 @@
-package com.andrei.demo.service;
+package com.ana.demo.service;
 
-import com.andrei.demo.model.Person;
-import com.andrei.demo.model.PersonCreateDTO;
-import com.andrei.demo.repository.PersonRepository;
+import com.ana.demo.repository.PersonRepository;
+import com.ana.demo.model.Person;
+import com.ana.demo.model.PersonCreateDTO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.andrei.demo.model;
+package com.ana.demo.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
