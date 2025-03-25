@@ -24,7 +24,4 @@ public class Product {
     @Column(name = "description", columnDefinition = "TEXT")
     private String description; // Optional description of the product
 
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private List<OrderProduct> orderProducts; // List of order-product associations
-
 }

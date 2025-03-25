@@ -1,5 +1,6 @@
 package com.ana.demo.service;
 
+import com.ana.demo.model.CustomException;
 import com.ana.demo.model.User;
 import com.ana.demo.model.UserCreateDTO;
 import com.ana.demo.repository.UserRepository;
@@ -21,13 +22,17 @@ public class UserService {
     }
 
     // Add a new user
-    public User addUser(UserCreateDTO userDTO) {
+    public User addUser(UserCreateDTO userDTO) throws CustomException {
         User user = new User();
         user.setName(userDTO.getName());
         user.setEmail(userDTO.getEmail());
         user.setPassword(userDTO.getPassword());
         user.setRole(userDTO.getRole());
 
+        Optional<User> existingUser = userRepository.findByEmail(user.getEmail());
+        if(existingUser.isPresent()) {
+            throw new CustomException("User with email " + user.getEmail() + " already exists");
+        }
         return userRepository.save(user);
     }
 

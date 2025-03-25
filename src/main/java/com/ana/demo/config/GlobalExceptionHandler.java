@@ -1,5 +1,6 @@
 package com.ana.demo.config;
 
+import com.ana.demo.model.CustomException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -17,6 +18,7 @@ import java.util.Map;
 public class GlobalExceptionHandler {
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String, String> handleValidationExceptions(MethodArgumentNotValidException ex) {
         BindingResult result = ex.getBindingResult();
@@ -28,6 +30,15 @@ public class GlobalExceptionHandler {
 
         log.error("Validation error: {}", errorMap);
 
+        return errorMap;
+    }
+
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(CustomException.class)
+    public Map<String, String> handleCustomExceptions(CustomException ex) {
+        Map<String, String> errorMap = new HashMap<>();
+        errorMap.put("message", ex.getMessage());
+        log.error("Custom error: {}", errorMap);
         return errorMap;
     }
 }

@@ -1,5 +1,6 @@
 package com.ana.demo.controller;
 
+import com.ana.demo.model.CustomException;
 import com.ana.demo.model.User;
 import com.ana.demo.model.UserCreateDTO;
 import com.ana.demo.service.UserService;
@@ -38,7 +39,7 @@ public class UserController {
 
     // Add a new user
     @PostMapping
-    public ResponseEntity<User> addUser(@Valid @RequestBody UserCreateDTO userDTO) {
+    public ResponseEntity<User> addUser(@Valid @RequestBody UserCreateDTO userDTO) throws CustomException {
         return ResponseEntity.ok(userService.addUser(userDTO));
     }
 
