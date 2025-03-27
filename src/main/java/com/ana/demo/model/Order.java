@@ -18,8 +18,9 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference
     private User user;
 
     @Column(name = "total_price", nullable = false)
@@ -28,6 +29,13 @@ public class Order {
     @Column(name = "status", nullable = false)
     private String status; // e.g., "PENDING", "SHIPPED", "DELIVERED"
 
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<OrderProduct> orderProducts = new ArrayList<>();
 
-
+    // Helper method to add products to the order
+    public void addOrderProduct(OrderProduct orderProduct) {
+        orderProducts.add(orderProduct);
+        orderProduct.setOrder(this); // Maintain bidirectional relationship
+    }
 }

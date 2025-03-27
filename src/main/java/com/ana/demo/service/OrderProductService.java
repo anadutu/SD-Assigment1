@@ -26,7 +26,10 @@ public class OrderProductService {
         this.orderRepository = orderRepository;
         this.productRepository = productRepository;
     }
-
+    //Get all order products
+    public List<OrderProduct> getOrderProducts() {
+        return orderProductRepository.findAll();
+    }
     // Get all order products for a specific order
     public List<OrderProduct> getOrderProductsByOrderId(UUID orderId) {
         return orderProductRepository.findByOrderId(orderId);

@@ -29,4 +29,7 @@ public class User {
     @Column(name = "role", nullable = false)
     private String role; // e.g., "admin", "customer"
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference // Prevents infinite recursion when serializing the Order entity
+    private List<Order> orders = new ArrayList<>();
 }
